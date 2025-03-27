@@ -8,7 +8,7 @@ app = FastAPI()
 host = os.getenv("ELASTICSEARCH_HOST", "http://localhost:9200")
 es = Elasticsearch([host])
 
-index_name = "India"
+index_name = "india_doc"
 
 def c_index():
     if not es.indices.exists(index=index_name):
@@ -41,5 +41,6 @@ def insert(q: str):
 @app.get("/get/{q}")
 def get(q: str):
     result = es.search(index=index_name, body={"query": {"match": {"t": q}}})
-    return {"result": result['hits']['hits']}
+    return {"result": result['hits']['hits']}   
+
 
