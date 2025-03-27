@@ -1,0 +1,5 @@
+FROM python:3.13-slim
+WORKDIR /api
+RUN pip install --no-cache-dir "fastapi[standard]" elasticsearch
+COPY . .
+CMD ["sh",  "-c", "fastapi run client.py --port 9567"]
